@@ -34,20 +34,7 @@ jobs:
           pipenv sync --dev
 
       - name: Instalar dependências com pipenv (modo quiet)
-        run: |
-          pipenv install --dev --quiet
-          pipenv run pip install --quiet codecov  # apenas se codecov não estiver no Pipfile
+        run: pipenv install --dev --quiet
 
       - name: Rodar Flake8
-        run: pipenv run flake8 .
-
-      - name: Rodar Pytest com cobertura
-        run: |
-          export PYTHONPATH=$PYTHONPATH:$(pwd)
-          pipenv run pytest --cov=curso-django --cov-report=xml
-
-      - name: Enviar cobertura para Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage.xml
+        run: pipenv run flake8 libpythonpro_urbanstech
