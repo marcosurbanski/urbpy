@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-z=1_tqexbx3=@5&=s&csd&m)z52@szbu2z)g^wo%x!o36v%ms(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://curso-django-vmuk.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
