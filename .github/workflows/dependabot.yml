@@ -1,9 +1,11 @@
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: "/"  # onde está seu Pipfile
+    directory: "/"            # Pasta onde está seu Pipfile e Pipfile.lock
     schedule:
-      interval: "weekly"
+      interval: "weekly"      # Frequência que o Dependabot vai checar atualizações
     versioning-strategy: lockfile-only
     allow:
-      - dependency-type: "all"
+      - dependency-type: "all"  # Atualiza dependências diretas e indiretas
+    open-pull-requests-limit: 5
+    # opcional: ignore: [] para ignorar certas dependências se quiser
