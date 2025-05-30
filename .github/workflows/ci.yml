@@ -10,6 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      PIPENV_VENV_IN_PROJECT: 1
+      PIPENV_IGNORE_VIRTUALENVS: 1
+
     strategy:
       matrix:
         python-version: ['3.10']
@@ -35,7 +39,7 @@ jobs:
           pipenv run pip install --quiet codecov  # apenas se codecov não estiver no Pipfile
 
       - name: Rodar Flake8
-        run: pipenv run flake8 libpythonpro_urbanstech
+        run: pipenv run flake8 .
 
       - name: Rodar Pytest com cobertura
         run: |
