@@ -28,10 +28,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Instalar pipenv e dependências
-        run: |
-          python -m pip install --upgrade pip
+        run: |          
           pip install --quiet pipenv
-          pipenv sync --dev
+          pipenv sync -d
           # Instala pytest, pytest-cov e codecov caso não estejam no Pipfile
           pipenv run pip install --quiet pytest pytest-cov codecov
 
