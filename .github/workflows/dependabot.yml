@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"  # onde está seu Pipfile
+    schedule:
+      interval: "weekly"
+    versioning-strategy: lockfile-only
+    allow:
+      - dependency-type: "all"
