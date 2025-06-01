@@ -37,13 +37,12 @@ jobs:
 
       - name: Rodar Flake8 e Pytest
         run: |
-          pipenv run flake8 .
-          pipenv run pytest
+          pipenv run flake8 .          
 
       - name: Rodar Pytest com cobertura
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)
-          pipenv run pytest --cov=curso-django --cov-report=xml
+          pipenv run pytest --cov=pypro --cov-report=xml
 
       - name: Enviar cobertura para Codecov
         uses: codecov/codecov-action@v4
