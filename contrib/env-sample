@@ -1,1 +1,2 @@
 DEBUG=False
+SECRET_KEY = '1x+-9emi-zo_k5y#mlsk64qsycuh-#o16k+yw@-0eb93(^!w2y'
