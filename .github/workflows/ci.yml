@@ -34,6 +34,7 @@ jobs:
           # Instala pytest, pytest-cov e codecov caso não estejam no Pipfile
           pipenv run pip install --quiet pytest pytest-cov codecov
           pipenv install gunicorn
+          cp contrib/env-sample .env
 
       - name: Rodar Flake8 e Pytest
         run: |
