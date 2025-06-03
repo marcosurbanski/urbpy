@@ -10,10 +10,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:14
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     env:
       PIPENV_VENV_IN_PROJECT: 1
       PIPENV_IGNORE_VIRTUALENVS: 1
-      
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/testdb
+
     strategy:
       matrix:
         python-version: ['3.10']
@@ -28,17 +43,21 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Instalar pipenv e dependências
-        run: |          
+        run: |
           pip install --quiet pipenv
           pipenv sync -d
-          # Instala pytest, pytest-cov e codecov caso não estejam no Pipfile
-          pipenv run pip install --quiet pytest pytest-cov codecov
-          pipenv install gunicorn
+          pipenv run pip install --quiet pytest pytest-cov codecov gunicorn
           cp contrib/env-sample .env
+
+      - name: Esperar o PostgreSQL subir e criar o banco
+        run: |
+          sudo apt-get install -y postgresql-client
+          until pg_isready -h localhost -U postgres; do sleep 1; done
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE testdb;"
 
       - name: Rodar Flake8 e Pytest
         run: |
-          pipenv run flake8 .          
+          pipenv run flake8 .
 
       - name: Rodar Pytest com cobertura
         run: |
