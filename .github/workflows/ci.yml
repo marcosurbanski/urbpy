@@ -53,7 +53,7 @@ jobs:
         run: |
           sudo apt-get install -y postgresql-client
           until pg_isready -h localhost -U postgres; do sleep 1; done
-          psql -h localhost -U postgres -c "CREATE DATABASE testdb;"
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE testdb;"
 
       - name: Rodar Flake8 e Pytest
         run: |
