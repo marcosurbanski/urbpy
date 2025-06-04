@@ -61,6 +61,14 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
+# Media and static files
+/staticfiles/
+/mediafiles/
+
+# Collected static files and uploads
+*.pot
+*.pyc
+
 # Flask stuff:
 instance/
 .webassets-cache
@@ -136,6 +144,10 @@ ENV/
 env.bak/
 venv.bak/
 
+# VSCode, PyCharm, etc.
+.vscode/
+.idea/
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -172,3 +184,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# OS files
+.DS_Store
+Thumbs.db
