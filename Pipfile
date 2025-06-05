@@ -10,6 +10,9 @@ pytest-django = "*"
 python-decouple = "*"
 dj-database-url = "*"
 psycopg = "*"
+django-s3-folder-storage = "*"
+boto3 = "*"
+django-storages = "*"
 
 [dev-packages]
 flake8 = "*"
