@@ -15,9 +15,10 @@ import os
 from pathlib import Path
 from decouple import config, Csv
 import dj_database_url
+import boto3
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pypro.base',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -122,13 +124,45 @@ USE_TZ = True
 
 # Configuração de ambiente de desenvolvimento
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+USE_R2 = config("USE_R2", default=False, cast=bool)
+print(f"DEBUG: USE_R2 is set to {USE_R2}") # Adicione esta linha para depuração
+
+if USE_R2:
+    AWS_ACCESS_KEY_ID = config('R2_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = config('R2_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = 'curso-django' # Seu nome de bucket
+    AWS_S3_ENDPOINT_URL = 'https://7a9967bc09a19551fe9680b7ef08f9b9.r2.cloudflarestorage.com' # SEU endpoint real do R2
+    AWS_S3_REGION_NAME = 'auto' # Geralmente 'auto' para R2
+
+    # A URL pública dos seus arquivos estáticos no R2
+    STATIC_URL = f'{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/static/'
+    MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/media/'
+
+    # Definindo os backends de armazenamento
+    STATICFILES_STORAGE = 'pypro.storage_backends.R2StaticStorage'
+    DEFAULT_FILE_STORAGE = 'pypro.storage_backends.R2MediaStorage' # Usar R2MediaStorage para DEFAULT_FILE_STORAGE
+
+    # Estes parâmetros são configurados dentro da classe R2StaticStorage/R2MediaStorage
+    # e serão passados para o boto3 via django-storages.
+    # Não são estritamente necessários aqui se definidos na classe, mas podem ser úteis para depuração
+    # AWS_QUERYSTRING_AUTH = False # Configurado na classe
+    # AWS_S3_FILE_OVERWRITE = False # Configurado na classe
+    # AWS_DEFAULT_ACL = 'public-read' # Configurado na classe
+    # AWS_S3_OBJECT_PARAMETERS = { # Configurado na classe
+    #     'CacheControl': 'max-age=86400',
+    # }
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_local_cache') # Opcional: local para arquivos estáticos temporários antes do upload
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+print(f"FINAL_STATICFILES_STORAGE: {STATICFILES_STORAGE}")
