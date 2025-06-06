@@ -134,6 +134,8 @@ USE_TZ = True
 COLLECTFAST_ENABLED = config("COLLECTFAST_ENABLED", default=False, cast=bool)
 
 STATIC_URL = config("CLOUDFLARE_R2_PUBLIC_URL", default="https://pub-9c3ac0b38d92456c91bed81d8a666457.r2.dev") + "/static/"
+STATICFILES_STORAGE = "helpers.cloudflare.storages.StaticFileStorage"
+COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 
 STORAGES = {
     "default": {
