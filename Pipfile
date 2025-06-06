@@ -11,6 +11,7 @@ python-decouple = "*"
 dj-database-url = "*"
 psycopg = "*"
 django-storages = {extras = ["s3"], version = "*"}
+collectfast = "*"
 
 [dev-packages]
 flake8 = "*"

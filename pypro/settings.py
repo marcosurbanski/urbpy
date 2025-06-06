@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'collectfast',
     'django.contrib.staticfiles',
     'pypro.base',
     'storages',
@@ -129,6 +130,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 # Configuração de ambiente de desenvolvimento
+
+COLLECTFAST_ENABLED = config("COLLECTFAST_ENABLED", default=False, cast=bool)
 
 STATIC_URL = config("CLOUDFLARE_R2_PUBLIC_URL", default="https://pub-9c3ac0b38d92456c91bed81d8a666457.r2.dev") + "/static/"
 
