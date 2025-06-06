@@ -130,7 +130,7 @@ USE_TZ = True
 
 # Configuração de ambiente de desenvolvimento
 
-STATIC_URL = "static/"
+STATIC_URL = config("CLOUDFLARE_R2_PUBLIC_URL", default="https://pub-9c3ac0b38d92456c91bed81d8a666457.r2.dev") + "/static/"
 
 STORAGES = {
     "default": {
