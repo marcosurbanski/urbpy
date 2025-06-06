@@ -26,4 +26,7 @@ if all([bucket_name, endpoint_url, access_key, secret_key]):
         "endpoint_url": config("CLOUDFLARE_R2_BUCKET_ENDPOINT"),
         "access_key": config("CLOUDFLARE_R2_ACCESS_KEY"),
         "secret_key": config("CLOUDFLARE_R2_SECRET_KEY"),
+        "region_name": "auto",
+        "use_ssl": True,
+        "addressing_style": "virtual",
     }
