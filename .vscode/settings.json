@@ -3,5 +3,14 @@
         "pypro"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "curso-django",
+            "database": "${workspaceFolder:curso-django}/db.sqlite3"
+        }
+    ]
 }
