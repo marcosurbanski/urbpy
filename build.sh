@@ -11,4 +11,4 @@ pipenv run python manage.py migrate
 pipenv run python manage.py collectstatic --noinput
 
 # Cria superusuário, se não existir
-pipenv run python manage.py createsuperuser
+pipenv run python manage.py createadmin
