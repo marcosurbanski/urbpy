@@ -5,7 +5,9 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import PermissionsMixin
-from pypro.settings import AUTH_USER_MODEL
+# from pypro.settings import AUTH_USER_MODEL
+from django.conf import settings
+from django.contrib.auth import get_backends, load_backend
 
 
 class UserManager(BaseUserManager):
@@ -17,8 +19,7 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         # Lookup the real model class from the global app registry so this
         # manager method can be used in migrations. This is fine because
-        # managers are by definition working on the real model.
-        email = self.normalize_email(email)
+        # managers are by definition working on the real model.        
         user = self.model(email=email, **extra_fields)
         user.password = make_password(password)
         return user
@@ -83,7 +84,7 @@ class UserManager(BaseUserManager):
         self, perm, is_active=True, include_superusers=True, backend=None, obj=None
     ):
         if backend is None:
-            backends = AUTH_USER_MODEL._get_backends(return_tuples=True)
+            backends = backends = get_backends()
             if len(backends) == 1:
                 backend, _ = backends[0]
             else:
@@ -96,7 +97,7 @@ class UserManager(BaseUserManager):
                 "backend must be a dotted import path string (got %r)." % backend
             )
         else:
-            backend = AUTH_USER_MODEL.load_backend(backend)
+            backend = backend = load_backend(backend)
         if hasattr(backend, "with_perm"):
             return backend.with_perm(
                 perm,
