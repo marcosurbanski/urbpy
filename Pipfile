@@ -12,6 +12,8 @@ dj-database-url = "*"
 psycopg = "*"
 django-storages = {extras = ["s3"], version = "*"}
 collectfast = "*"
+django-debug-toolbar = "*"
+highlight-io = "*"
 
 [dev-packages]
 flake8 = "*"
