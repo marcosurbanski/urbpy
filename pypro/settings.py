@@ -15,6 +15,9 @@ import os
 from pathlib import Path
 from decouple import config, Csv
 import dj_database_url
+import highlight_io
+from highlight_io.integrations.django import DjangoIntegration
+
 
 # Import the Cloudflare R2 config
 import helpers.cloudflare.settings
@@ -83,6 +86,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pypro.wsgi.application'
+
+INTERNAL_IPS=config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
+
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.insert(0,'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 
 # Database
@@ -155,3 +164,13 @@ COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+H = highlight_io.H(
+    project_id=config("HIGHLIGHT_PROJECT_ID"),
+    integrations=[DjangoIntegration()],
+    instrument_logging=True,
+    service_name=config("HIGHLIGHT_SERVICE_NAME"),
+    service_version=config("HIGHLIGHT_SERVICE_VERSION"),
+    environment=config("HIGHLIGHT_ENVIRONMENT"),
+)
