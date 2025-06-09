@@ -1,15 +1,7 @@
-from django.apps import apps
-from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
-from collections.abc import Iterable
-from django.apps import apps
-from django.contrib import auth
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.hashers import make_password
-from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
 from django.db import models
-from django.db.models.manager import EmptyManager
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import PermissionsMixin
@@ -26,9 +18,6 @@ class UserManager(BaseUserManager):
         # Lookup the real model class from the global app registry so this
         # manager method can be used in migrations. This is fine because
         # managers are by definition working on the real model.
-        GlobalUserModel = apps.get_model(
-            self.model._meta.app_label, self.model._meta.object_name
-        )
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.password = make_password(password)
@@ -38,7 +27,7 @@ class UserManager(BaseUserManager):
         """
         Create and save a user with the given email and password.
         """
-        user = self._create_user_object( email, password, **extra_fields)
+        user = self._create_user_object(email, password, **extra_fields)
         user.save(using=self._db)
         return user
 
@@ -48,7 +37,7 @@ class UserManager(BaseUserManager):
         await user.asave(using=self._db)
         return user
 
-    def create_user(self,email, password=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
         return self._create_user(email, password, **extra_fields)
@@ -107,7 +96,7 @@ class UserManager(BaseUserManager):
                 "backend must be a dotted import path string (got %r)." % backend
             )
         else:
-            backend = authority_matrix.load_backend(backend)
+            backend = AUTH_USER_MODEL.load_backend(backend)
         if hasattr(backend, "with_perm"):
             return backend.with_perm(
                 perm,
@@ -117,15 +106,14 @@ class UserManager(BaseUserManager):
             )
         return self.none()
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     """
     App base User class.
 
     Email and password are required. Other fields are optional.
     """
-
-    
-    first_name = models.CharField(_("first name"), max_length=30, blank=True)    
+    first_name = models.CharField(_("first name"), max_length=30, blank=True)
     email = models.EmailField(_("email address"), unique=True)
     is_staff = models.BooleanField(
         _("staff status"),
@@ -151,7 +139,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = _("user")
         verbose_name_plural = _("users")
-        
 
     def clean(self):
         super().clean()

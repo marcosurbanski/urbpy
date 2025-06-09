@@ -1,6 +1,4 @@
-import logging
-import random
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse
 
 
 # Create your views here.

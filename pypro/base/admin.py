@@ -8,7 +8,6 @@ from django.contrib.auth.forms import (
     AdminUserCreationForm,
     UserChangeForm,
 )
-from django.contrib.auth.models import Group
 from django.core.exceptions import PermissionDenied
 from django.db import router, transaction
 from django.http import Http404, HttpResponseRedirect
@@ -31,7 +30,7 @@ class UserAdmin(admin.ModelAdmin):
     add_form_template = "admin/auth/user/add_form.html"
     change_user_password_template = None
     fieldsets = (
-        (None, {"fields": ("first_name", "email", "password")}),        
+        (None, {"fields": ("first_name", "email", "password")}),
         (
             _("Permissions"),
             {
