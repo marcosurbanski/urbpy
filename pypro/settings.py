@@ -17,16 +17,13 @@ from decouple import config, Csv
 import dj_database_url
 import highlight_io
 from highlight_io.integrations.django import DjangoIntegration
-
+from helpers.cloudflare.settings import CLOUDFLARE_R2_CONFIG_OPTIONS
 
 # Import the Cloudflare R2 config
 import helpers.cloudflare.settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -93,8 +90,10 @@ WSGI_APPLICATION = 'pypro.wsgi.application'
 INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
 
 if DEBUG:
+
     INSTALLED_APPS.append('debug_toolbar')
     MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+    
 
 
 # Database
@@ -147,7 +146,10 @@ USE_TZ = True
 
 COLLECTFAST_ENABLED = config("COLLECTFAST_ENABLED", default=False, cast=bool)
 
-STATIC_URL = config("CLOUDFLARE_R2_PUBLIC_URL", default="https://pub-9c3ac0b38d92456c91bed81d8a666457.r2.dev") + "/static/"
+
+"""STATIC_URL = config("CLOUDFLARE_R2_PUBLIC_URL", default="https://pub-9c3ac0b38d92456c91bed81d8a666457.r2.dev").rstrip("/") + "/static/"
+
+
 
 
 STORAGES = {
@@ -162,6 +164,40 @@ STORAGES = {
 }
 STATICFILES_STORAGE = "helpers.cloudflare.storages.StaticFileStorage"
 COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
+"""
+USE_CLOUDFLARE_R2 = bool(CLOUDFLARE_R2_CONFIG_OPTIONS)
+R2_PUBLIC_URL = config("CLOUDFLARE_R2_PUBLIC_URL", default=None)
+
+if USE_CLOUDFLARE_R2 and R2_PUBLIC_URL:
+    STATIC_URL = R2_PUBLIC_URL.rstrip("/") + "/static/"
+    MEDIA_URL = R2_PUBLIC_URL.rstrip("/") + "/media/"
+
+    STORAGES = {
+        "default": {
+            "BACKEND": "helpers.cloudflare.storages.MediaFileStorage",
+            "OPTIONS": CLOUDFLARE_R2_CONFIG_OPTIONS,
+        },
+        "staticfiles": {
+            "BACKEND": "helpers.cloudflare.storages.StaticFileStorage",
+            "OPTIONS": CLOUDFLARE_R2_CONFIG_OPTIONS,
+        },
+    }
+
+    STATICFILES_STORAGE = "helpers.cloudflare.storages.StaticFileStorage"
+    DEFAULT_FILE_STORAGE = "helpers.cloudflare.storages.MediaFileStorage"
+    COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
+
+else:
+    INSTALLED_APPS.remove("collectfast")
+    STATIC_URL = "/static/"
+
+    STATICFILES_DIRS = [
+        BASE_DIR / "pypro" / "base" / "static",
+    ]
+
+    STATIC_ROOT = BASE_DIR / "static"
+    
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -177,3 +213,8 @@ H = highlight_io.H(
     service_version=config("HIGHLIGHT_SERVICE_VERSION"),
     environment=config("HIGHLIGHT_ENVIRONMENT"),
 )
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
