@@ -17,7 +17,6 @@ from decouple import config, Csv
 import dj_database_url
 import highlight_io
 from highlight_io.integrations.django import DjangoIntegration
-from helpers.cloudflare.settings import CLOUDFLARE_R2_CONFIG_OPTIONS
 
 
 # Import the Cloudflare R2 config
