@@ -64,6 +64,8 @@ db.sqlite3-journal
 # Media and static files
 /staticfiles/
 /mediafiles/
+/static/
+/media/
 
 # Collected static files and uploads
 *.pot

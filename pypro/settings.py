@@ -19,6 +19,7 @@ import highlight_io
 from highlight_io.integrations.django import DjangoIntegration
 from helpers.cloudflare.settings import CLOUDFLARE_R2_CONFIG_OPTIONS
 
+
 # Import the Cloudflare R2 config
 import helpers.cloudflare.settings
 
@@ -90,10 +91,8 @@ WSGI_APPLICATION = 'pypro.wsgi.application'
 INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
 
 if DEBUG:
-
     INSTALLED_APPS.append('debug_toolbar')
     MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
-    
 
 
 # Database
@@ -144,49 +143,24 @@ USE_TZ = True
 
 # Configuração de ambiente de desenvolvimento
 
-COLLECTFAST_ENABLED = config("COLLECTFAST_ENABLED", default=False, cast=bool)
+COLLECTFAST_ENABLED = config("COLLECTFAST_ENABLED", default=False, cast=lambda v: str(v).lower() in ("true", "1", "t", "yes"))
+print(COLLECTFAST_ENABLED)
 
+STATIC_URL = config("CLOUDFLARE_R2_PUBLIC_URL", default="https://pub-9c3ac0b38d92456c91bed81d8a666457.r2.dev") + "/static/"
 
-"""STATIC_URL = config("CLOUDFLARE_R2_PUBLIC_URL", default="https://pub-9c3ac0b38d92456c91bed81d8a666457.r2.dev").rstrip("/") + "/static/"
-
-
-
-
-STORAGES = {
-    "default": {
-        "BACKEND": "helpers.cloudflare.storages.MediaFileStorage",
-        "OPTIONS": helpers.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS,
-    },
-    "staticfiles": {
-        "BACKEND": "helpers.cloudflare.storages.StaticFileStorage",
-        "OPTIONS": helpers.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS,
-    },
-}
-STATICFILES_STORAGE = "helpers.cloudflare.storages.StaticFileStorage"
-COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
-"""
-USE_CLOUDFLARE_R2 = bool(CLOUDFLARE_R2_CONFIG_OPTIONS)
-R2_PUBLIC_URL = config("CLOUDFLARE_R2_PUBLIC_URL", default=None)
-
-if USE_CLOUDFLARE_R2 and R2_PUBLIC_URL:
-    STATIC_URL = R2_PUBLIC_URL.rstrip("/") + "/static/"
-    MEDIA_URL = R2_PUBLIC_URL.rstrip("/") + "/media/"
-
+if COLLECTFAST_ENABLED:
     STORAGES = {
         "default": {
             "BACKEND": "helpers.cloudflare.storages.MediaFileStorage",
-            "OPTIONS": CLOUDFLARE_R2_CONFIG_OPTIONS,
+            "OPTIONS": helpers.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS,
         },
         "staticfiles": {
             "BACKEND": "helpers.cloudflare.storages.StaticFileStorage",
-            "OPTIONS": CLOUDFLARE_R2_CONFIG_OPTIONS,
+            "OPTIONS": helpers.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS,
         },
     }
-
     STATICFILES_STORAGE = "helpers.cloudflare.storages.StaticFileStorage"
-    DEFAULT_FILE_STORAGE = "helpers.cloudflare.storages.MediaFileStorage"
     COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
-
 else:
     INSTALLED_APPS.remove("collectfast")
     STATIC_URL = "/static/"
@@ -196,8 +170,6 @@ else:
     ]
 
     STATIC_ROOT = BASE_DIR / "static"
-    
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
