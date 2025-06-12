@@ -7,13 +7,13 @@ name = "pypi"
 django = "*"
 gunicorn = "*"
 pytest-django = "*"
-python-decouple = "*"
 dj-database-url = "*"
 psycopg = "*"
 django-storages = {extras = ["s3"], version = "*"}
 collectfast = "*"
 highlight-io = "*"
 django-debug-toolbar = "*"
+python-decouple = "*"
 
 [dev-packages]
 flake8 = "*"
