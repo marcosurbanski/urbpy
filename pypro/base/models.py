@@ -5,8 +5,6 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import PermissionsMixin
-# from pypro.settings import AUTH_USER_MODEL
-from django.conf import settings
 from django.contrib.auth import get_backends, load_backend
 
 
@@ -19,7 +17,7 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         # Lookup the real model class from the global app registry so this
         # manager method can be used in migrations. This is fine because
-        # managers are by definition working on the real model.        
+        # managers are by definition working on the real model.
         user = self.model(email=email, **extra_fields)
         user.password = make_password(password)
         return user
