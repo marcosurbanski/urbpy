@@ -70,7 +70,19 @@ pipenv run pytest --cov=.
 
 📂 Estrutura de pastas
 
-<pre lang="plaintext"><code> curso-django/ │ ├── pypro/ # Projeto Django │ ├── base/ # App principal │ └── settings.py ├── staticfiles/ # Arquivos estáticos coletados ├── mediafiles/ # Uploads (modo local) ├── templates/ # Templates HTML ├── Pipfile # Dependências com Pipenv ├── Pipfile.lock ├── .env.example └── manage.py </code></pre>
+```text
+curso-django/
+├── pypro/              # Projeto Django
+│   ├── base/           # App principal
+│   └── settings.py
+├── staticfiles/        # Arquivos estáticos coletados
+├── mediafiles/         # Uploads (modo local)
+├── templates/          # Templates HTML
+├── Pipfile             # Dependências com Pipenv
+├── Pipfile.lock
+├── .env.example
+└── manage.py
+```
 
 🧪 Variáveis de ambiente
 Configure as variáveis com base no arquivo .env.example.
