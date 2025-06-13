@@ -44,11 +44,16 @@ cp .env.example .env
 # 6. Execute as migrações e o servidor
 python manage.py migrate
 python manage.py runserver
+```
 
-
+✅ Testes
+```bash
 # Execute os testes com cobertura
 pipenv run pytest --cov=.
+```
 
+
+📂 Estrutura de pastas
 curso-django/
 │
 ├── pypro/               # Projeto Django
