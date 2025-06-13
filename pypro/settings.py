@@ -162,13 +162,12 @@ if COLLECTFAST_ENABLED:
     COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 else:
     INSTALLED_APPS.remove("collectfast")
+
     STATIC_URL = "/static/"
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-    STATICFILES_DIRS = [
-        BASE_DIR / "pypro" / "base" / "static",
-    ]
-
-    STATIC_ROOT = BASE_DIR / "static"
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
