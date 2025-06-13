@@ -69,33 +69,21 @@ pipenv run pytest --cov=.
 
 
 📂 Estrutura de pastas
-csharp
-Copiar
-Editar
-curso-django/
-│
-├── pypro/               # Projeto Django
-│   ├── base/            # App principal
-│   └── settings.py
-├── staticfiles/         # Arquivos estáticos coletados
-├── mediafiles/          # Uploads (modo local)
-├── templates/           # Templates HTML
-├── Pipfile              # Dependências com Pipenv
-├── Pipfile.lock
-├── .env.example
-└── manage.py
+
+<pre lang="plaintext"><code> curso-django/ │ ├── pypro/ # Projeto Django │ ├── base/ # App principal │ └── settings.py ├── staticfiles/ # Arquivos estáticos coletados ├── mediafiles/ # Uploads (modo local) ├── templates/ # Templates HTML ├── Pipfile # Dependências com Pipenv ├── Pipfile.lock ├── .env.example └── manage.py </code></pre>
 
 🧪 Variáveis de ambiente
 Configure as variáveis com base no arquivo .env.example.
 Aqui estão algumas importantes:
 
-Variável	Descrição
-SECRET_KEY	Chave secreta Django
-DEBUG	Ativa/desativa modo debug
-DATABASE_URL	URL do banco de dados
-CLOUDFLARE_R2_*	Configurações para uso de arquivos em R2
-COLLECTFAST_ENABLED	Otimização de arquivos estáticos
-HIGHLIGHT_*	Observabilidade com Highlight.io
+| Variável              | Descrição                                 |
+|-----------------------|--------------------------------------------|
+| `SECRET_KEY`          | Chave secreta do Django                    |
+| `DEBUG`               | Ativa/desativa modo debug                  |
+| `DATABASE_URL`        | URL de conexão com o banco de dados        |
+| `CLOUDFLARE_R2_*`     | Configurações da Cloudflare R2             |
+| `COLLECTFAST_ENABLED` | Ativa o uso do Collectfast com boto3       |
+| `HIGHLIGHT_*`         | Configurações do Highlight.io              |
 
 
 
