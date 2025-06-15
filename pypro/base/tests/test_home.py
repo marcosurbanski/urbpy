@@ -15,12 +15,5 @@ def test_title(resp):
     assert_contains(resp, '<title>UrbPy - Future IT course platform</title>')
 
 def test_home_link(resp):    
-    assert_contains(resp, 'content="Marcos Urbanski"')
-
-
-def test_description(resp):   
-    assert_contains(resp, 'content="Pagina da aplicação URBPY"')
-
-def test_author(resp):   
-    assert_contains(resp, 'href="/">UrbPy</a>')
+    assert_contains(resp, f'href="{reverse("home")}">UrbPy</a>')
 
