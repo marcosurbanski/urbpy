@@ -5,7 +5,7 @@ import pytest
 
 @pytest.fixture
 def resp(client):
-    resp = client.get(reverse('home'))
+    resp = client.get(reverse('base:home'))
     return resp
 
 
@@ -18,4 +18,4 @@ def test_title(resp):
 
 
 def test_home_link(resp):
-    assert_contains(resp, f'href="{reverse("home")}">UrbPy</a>')
+    assert_contains(resp, f'href="{reverse("base:home")}">UrbPy</a>')
