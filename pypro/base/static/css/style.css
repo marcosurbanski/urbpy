@@ -1,6 +1,9 @@
 .main-footer{
     background-color: rgb(36, 41, 45);  
-    color: rgb(244, 171, 61)
+    color: rgb(244, 171, 61);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 .rights{
     background-color: rgb(6, 6, 6);  
