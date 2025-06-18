@@ -22,6 +22,7 @@ Dependabot: Atualização automática de dependências
 
 ---
 
+
 ## 🧰 Tecnologias utilizadas
 
 - Django 5.2
