@@ -1,5 +1,3 @@
-
-
 from django.urls import path
 from pypro.base.views import home
 
