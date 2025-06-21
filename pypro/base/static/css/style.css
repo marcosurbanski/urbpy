@@ -1,18 +1,15 @@
 .main-footer {
   background-color: rgb(36, 41, 45);
-  color: rgb(244, 171, 61);
-  padding: 2rem;
+  padding: 1rem;
   width: 100%;
   position: static !important;
 }
 
 .rights {
-  background-color: rgb(6, 6, 6);  
-  color: rgb(240, 226, 204);
+  background-color: rgb(86, 86, 86);  
+  color: rgb(246, 171, 50);
   padding: 1rem 0;
   width: 100%;
-  position: static;
-  outline: 2px solid red;
 }
 
 html, body {
