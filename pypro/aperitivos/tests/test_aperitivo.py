@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 from pypro.django_assertions import assert_contains
 
+
 @pytest.fixture
 def resp(client):
     return client.get(reverse('aperitivos:video', args=('motivacao',)))
@@ -12,8 +13,8 @@ def test_status_code(resp):
 
 
 def test_titulo_video(resp):
-    assert_contains(resp, '<h1>Video Aperitivo: Motivação</h1>')
+    assert_contains(resp, '<h1 class="mt-4 mb-3">Video Aperitivo: Motivação</h1>')
 
 
 def test_conteudo_video(resp):
-    assert_contains(resp, '<iframe src="https://share.synthesia.io/embeds/videos/76c48edb-dd43-4415-809a-e1dc53efeb4c"')
+    assert_contains(resp, '<iframe src="https://share.synthesia.io/embeds/videos/445f84c2-eb92-49da-a4dc-b4c0ec772fed"')
