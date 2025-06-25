@@ -11,6 +11,17 @@
 					<div style="position: relative; overflow: hidden; aspect-ratio: 1920/1080">
 						<iframe src="https://share.synthesia.io/embeds/videos/{{ video.synthesia_id }}" loading="lazy" title="Synthesia video player - Mastering the Future: Your Journey with Python and AI" allowfullscreen allow="encrypted-media; fullscreen;" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; overflow:hidden;"></iframe>
 					</div>
+					<!-- Botão Voltar, só se o slug for "show" -->					
+					{% if video.slug == "show" %}
+					<div>
+						<a class="btn btn-primary mt-2" href="{% url 'aperitivos:video' slug='motivacao' %}">Voltar</a>
+					</div>
+					{% endif %}
+					{% if video.slug == "motivacao" %}
+					<div>
+						<a name="show" class="btn btn-primary mt-4" href="{% url 'aperitivos:video' slug='show' %}"> Próximo vídeo</a>
+					</div>
+					{% endif %}
 				</div>
 			</div>				
 		</div>
