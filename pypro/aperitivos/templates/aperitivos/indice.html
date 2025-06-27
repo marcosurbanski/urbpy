@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}UrbPy - Sobre{% endblock title %}
+<meta name="description" content="{% block description %} Página com todos os videos URBPY{% endblock description%}">
+{% block body %}
+	<main class="container">
+		<div class="container">
+			<div class="row">		
+				<div class="col-md-12">
+                	<h1 class="mt-4 mb-3">Lista de Vídeos Aperitivos</h1>
+					<ol>
+						{% for video in videos %}
+							<li>{{ video.titulo|default:"Sem título" }}</li>
+							{%empty%}
+								<li>Não foi encontrado nenhum vídeo de aperitivo</li>
+						{% endfor %}
+					</ol>
+				</div>
+			</div>				
+		</div>
+	</main>
+{% endblock body %}
