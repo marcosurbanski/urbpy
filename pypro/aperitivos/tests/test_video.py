@@ -25,7 +25,6 @@ Função test_conteudo_video:
 """
 
 
-
 @pytest.fixture
 def resp(client):
     return client.get(reverse('aperitivos:video', args=('motivacao',)))
