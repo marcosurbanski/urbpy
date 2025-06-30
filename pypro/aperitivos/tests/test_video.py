@@ -2,6 +2,28 @@ import pytest
 from django.urls import reverse
 from pypro.django_assertions import assert_contains
 
+"""
+Testes da view 'video' do app 'aperitivos'.
+
+Função resp (fixture):
+    - Realiza uma requisição GET para a view 'video' passando o slug 'motivacao'.
+    - Retorna a resposta HTTP (HttpResponse) para ser reutilizada nos testes.
+    - Facilita a repetição de testes sem chamar a view manualmente a cada vez.
+
+Função test_status_code:
+    - Verifica se a resposta da requisição possui status HTTP 200 (OK).
+    - Garante que a página do vídeo está acessível e não retorna erro.
+
+Função test_titulo_video:
+    - Verifica se o título renderizado na página corresponde ao esperado.
+    - Usa assert_contains (customizado com BeautifulSoup) para validar o conteúdo HTML.
+    - Título esperado: <h1 class="mt-4 mb-3">Video Aperitivo: Motivação</h1>
+
+Função test_conteudo_video:
+    - Verifica se o iframe com o link do vídeo (via Synthesia) está presente na página.
+    - Garante que o conteúdo principal da view está carregando corretamente.
+"""
+
 
 @pytest.fixture
 def resp(client):

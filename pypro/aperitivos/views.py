@@ -14,7 +14,7 @@ from django.urls import reverse
     videos_dct: cria um dicionario onde a chave é o 'slug' do video e o valor é o objeto Video correspondente
     Isso permite acessar rapidamente um video especifico pelo seu slug.
 
-    função indice: View que renderiza a página inicial com a lista de videos disponiveis.
+    Função indice: View que renderiza a página inicial com a lista de videos disponiveis.
     função video: view que renderiza uma página para um video especifico, com base no slug da URL.
 """
 
