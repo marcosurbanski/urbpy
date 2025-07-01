@@ -190,3 +190,7 @@ cython_debug/
 # OS files
 .DS_Store
 Thumbs.db
+
+# postgres files for local development
+
+.pgdata
