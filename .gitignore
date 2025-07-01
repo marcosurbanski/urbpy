@@ -149,7 +149,7 @@ venv.bak/
 # VSCode, PyCharm, etc.
 .vscode/
 .idea/
-
+.vscode/settings.json
 # Spyder project settings
 .spyderproject
 .spyproject
