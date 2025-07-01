@@ -12,6 +12,15 @@
             "driver": "SQLite",
             "name": "curso-django",
             "database": "${workspaceFolder:curso-django}/db.sqlite3"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5434,
+            "driver": "PostgreSQL",
+            "username": "pythonpro",
+            "database": "postgres",
+            "name": "cursodjango_database"
         }
     ]
 }
