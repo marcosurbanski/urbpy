@@ -194,3 +194,4 @@ Thumbs.db
 # postgres files for local development
 
 .pgdata
+.devcontainer/
