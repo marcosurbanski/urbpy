@@ -33,13 +33,14 @@ Uso do @pytest.mark.parametrize:
 """
 
 
-#o modelo comentado foi para realizar apenas 1 texto especifico foi implementado a bibliotexa model_mommy para testes aleatorios.
+# o modelo comentado foi para realizar apenas 1 texto especifico foi implementado a bibliotexa model_mommy para testes aleatorios.
 @pytest.fixture
 def videos(db):
-    #v = Video(slug='motivacao', titulo='Video Aperitivo: Motivação', synthesia_id='445f84c2-eb92-49da-a4dc-b4c0ec772fed')
-    #v.save()
-    #return v
+    # v = Video(slug='motivacao', titulo='Video Aperitivo: Motivação', synthesia_id='445f84c2-eb92-49da-a4dc-b4c0ec772fed')
+    # v.save()
+    # return v
     return baker.make(Video, 3)
+
 
 @pytest.fixture
 def resp(client, videos):

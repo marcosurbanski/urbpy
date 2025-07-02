@@ -27,17 +27,20 @@ Função test_conteudo_video:
     - Garante que o conteúdo principal da view está carregando corretamente.
 """
 
-#o modelo comentado foi para realizar apenas 1 texto especifico foi implementado a bibliotexa model_mommy para testes aleatorios.
+
+# o modelo comentado foi para realizar apenas 1 texto especifico foi implementado a bibliotexa model_mommy para testes aleatorios.
 @pytest.fixture
 def video(db):
-    #v = Video(slug='motivacao', titulo='Video Aperitivo: Motivação', synthesia_id='445f84c2-eb92-49da-a4dc-b4c0ec772fed')
-    #v.save()
-    #return v
+    # v = Video(slug='motivacao', titulo='Video Aperitivo: Motivação', synthesia_id='445f84c2-eb92-49da-a4dc-b4c0ec772fed')
+    # v.save()
+    # return v
     return baker.make(Video)
+
 
 @pytest.fixture
 def resp(client, video):
     return client.get(reverse('aperitivos:video', args=(video.slug,)))
+
 
 @pytest.fixture
 def resp_video_nao_encontrado(client, video):
@@ -47,6 +50,7 @@ def resp_video_nao_encontrado(client, video):
 def test_status_code_video_nao_encontrado(resp_video_nao_encontrado):
     assert resp_video_nao_encontrado.status_code == 404
 
+
 def test_status_code(resp):
     assert resp.status_code == 200
 
@@ -55,5 +59,5 @@ def test_titulo_video(resp, video):
     assert_contains(resp, video.titulo)
 
 
-def test_conteudo_video(resp,video):
+def test_conteudo_video(resp, video):
     assert_contains(resp, f'<iframe src="https://share.synthesia.io/embeds/videos/{video.synthesia_id}"')

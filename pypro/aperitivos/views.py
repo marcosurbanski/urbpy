@@ -26,8 +26,9 @@ videos = [
 videos_dct = {v.slug: v for v in videos}
 """
 
+
 def indice(request):
-    videos=Video.objects.order_by('creation').all() # traz todos os vídeos ordenados pela data de criação (do mais antigo para o mais novo)
+    videos = Video.objects.order_by('creation').all()  # traz todos os vídeos ordenados pela data de criação (do mais antigo para o mais novo)
     return render(request, 'aperitivos/indice.html', context={'videos': videos})
 
 
