@@ -1,6 +1,9 @@
 import pytest
+from model_bakery import baker
 from django.urls import reverse
+from pypro.aperitivos.models import Video
 from pypro.django_assertions import assert_contains
+
 
 """
 Testes da view 'video' do app 'aperitivos'.
@@ -25,18 +28,36 @@ Função test_conteudo_video:
 """
 
 
+# o modelo comentado foi para realizar apenas 1 texto especifico foi implementado a bibliotexa model_mommy para testes aleatorios.
 @pytest.fixture
-def resp(client):
-    return client.get(reverse('aperitivos:video', args=('motivacao',)))
+def video(db):
+    # v = Video(slug='motivacao', titulo='Video Aperitivo: Motivação', synthesia_id='445f84c2-eb92-49da-a4dc-b4c0ec772fed')
+    # v.save()
+    # return v
+    return baker.make(Video)
+
+
+@pytest.fixture
+def resp(client, video):
+    return client.get(reverse('aperitivos:video', args=(video.slug,)))
+
+
+@pytest.fixture
+def resp_video_nao_encontrado(client, video):
+    return client.get(reverse('aperitivos:video', args=(video.slug+'video_nao_existente',)))
+
+
+def test_status_code_video_nao_encontrado(resp_video_nao_encontrado):
+    assert resp_video_nao_encontrado.status_code == 404
 
 
 def test_status_code(resp):
     assert resp.status_code == 200
 
 
-def test_titulo_video(resp):
-    assert_contains(resp, '<h1 class="mt-4 mb-3">Video Aperitivo: Motivação</h1>')
+def test_titulo_video(resp, video):
+    assert_contains(resp, video.titulo)
 
 
-def test_conteudo_video(resp):
-    assert_contains(resp, '<iframe src="https://share.synthesia.io/embeds/videos/445f84c2-eb92-49da-a4dc-b4c0ec772fed"')
+def test_conteudo_video(resp, video):
+    assert_contains(resp, f'<iframe src="https://share.synthesia.io/embeds/videos/{video.synthesia_id}"')
