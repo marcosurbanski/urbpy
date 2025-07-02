@@ -1,4 +1,5 @@
 import pytest
+from model_bakery import baker
 from django.urls import reverse
 from pypro.aperitivos.models import Video
 from pypro.django_assertions import assert_contains
@@ -26,12 +27,13 @@ Função test_conteudo_video:
     - Garante que o conteúdo principal da view está carregando corretamente.
 """
 
-
+#o modelo comentado foi para realizar apenas 1 texto especifico foi implementado a bibliotexa model_mommy para testes aleatorios.
 @pytest.fixture
 def video(db):
-    v = Video(slug='motivacao', titulo='Video Aperitivo: Motivação', synthesia_id='445f84c2-eb92-49da-a4dc-b4c0ec772fed')
-    v.save()
-    return v
+    #v = Video(slug='motivacao', titulo='Video Aperitivo: Motivação', synthesia_id='445f84c2-eb92-49da-a4dc-b4c0ec772fed')
+    #v.save()
+    #return v
+    return baker.make(Video)
 
 @pytest.fixture
 def resp(client, video):
