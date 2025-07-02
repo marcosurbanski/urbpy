@@ -13,7 +13,7 @@
     Função indice: View que renderiza a página inicial com a lista de videos disponiveis.
     função video: view que renderiza uma página para um video especifico, com base no slug da URL.
 """
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Video
 
 
@@ -30,5 +30,5 @@ def indice(request):
 
 
 def video(request, slug):
-    video = Video.objects.get(slug=slug)
+    video = get_object_or_404(Video, slug=slug)
     return render(request, 'aperitivos/video.html', context={'video': video})
