@@ -16,16 +16,18 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Video
 
-
+"""
+Para desenvolvimento e testes foi criado os videos abaixo no formato hard coded e adicionar em um dicionario.
 videos = [
     Video(slug= 'motivacao', titulo= 'Video Aperitivo: Motivação', synthesia_id= '445f84c2-eb92-49da-a4dc-b4c0ec772fed'),
     Video(slug= 'show', titulo= 'Video Aperitivo: Apresentação', synthesia_id= '8f1bdd22-99a8-4ca5-b615-a90929485bf1')
 ]
 
 videos_dct = {v.slug: v for v in videos}
-
+"""
 
 def indice(request):
+    videos=Video.objects.order_by('creation').all() # traz todos os vídeos ordenados pela data de criação (do mais antigo para o mais novo)
     return render(request, 'aperitivos/indice.html', context={'videos': videos})
 
 
