@@ -62,7 +62,7 @@ jobs:
       - name: Rodar Pytest com cobertura
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)
-          pipenv run pytest --cov=pypro --cov-report=xml
+          pipenv run pytest --nomigrations --cov=pypro --cov-report=xml
 
       - name: Enviar cobertura para Codecov
         uses: codecov/codecov-action@v4
