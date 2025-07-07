@@ -14,7 +14,7 @@ collectfast = "*"
 highlight-io = "*"
 django-debug-toolbar = "*"
 python-decouple = "*"
-
+django-ordered-model = "*"
 
 [dev-packages]
 flake8 = "*"
