@@ -2,7 +2,10 @@ from django.urls import reverse
 from pypro.django_assertions import assert_contains
 import pytest
 
+
 pytestmark = pytest.mark.django_db
+
+
 @pytest.fixture
 def resp(client):
     resp = client.get(reverse('base:home'))
