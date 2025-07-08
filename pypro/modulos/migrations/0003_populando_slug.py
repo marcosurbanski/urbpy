@@ -5,10 +5,11 @@ from django.utils.text import slugify
 
 
 def popular_slug(apps, schema_editor):
-	Modulo = apps.get_model('modulos', 'Modulo')
-	for modulo in Modulo.objects.all():
-		modulo.slug = slugify(modulo.titulo)
-		modulo.save()
+    Modulo = apps.get_model('modulos', 'Modulo')
+    for modulo in Modulo.objects.all():
+        modulo.slug = slugify(modulo.titulo)
+        modulo.save()
+
 
 class Migration(migrations.Migration):
 
@@ -17,5 +18,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-		migrations.RunPython(popular_slug)
+      migrations.RunPython(popular_slug)
     ]
