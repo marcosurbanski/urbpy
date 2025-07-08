@@ -3,11 +3,8 @@ from pypro.django_assertions import assert_contains
 import pytest
 
 
-pytestmark = pytest.mark.django_db
-
-
 @pytest.fixture
-def resp(client):
+def resp(client, db):
     resp = client.get(reverse('base:home'))
     return resp
 
