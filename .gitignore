@@ -197,3 +197,4 @@ Thumbs.db
 .devcontainer/
 *.sql
 actions-runner/
+.docker-compose.yml
