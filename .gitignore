@@ -198,3 +198,4 @@ Thumbs.db
 *.sql
 actions-runner/
 .docker-compose.yml
+docker-compose.yml
