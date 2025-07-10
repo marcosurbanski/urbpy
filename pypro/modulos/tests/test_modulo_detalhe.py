@@ -10,9 +10,11 @@ from pypro.modulos.models import Aula, Modulo
 def modulo(db):
     return baker.make(Modulo)
 
+
 @pytest.fixture
 def aulas(modulo):
     return baker.make(Aula, 3, modulo=modulo)
+
 
 @pytest.fixture
 def resp(client, modulo, aulas):
