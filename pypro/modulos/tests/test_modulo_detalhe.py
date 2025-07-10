@@ -11,7 +11,7 @@ def modulo(db):
     return baker.make(Modulo)
 
 @pytest.fixture
-def modulo(modulo):
+def aulas(modulo):
     return baker.make(Aula, 3, modulo=modulo)
 
 @pytest.fixture
