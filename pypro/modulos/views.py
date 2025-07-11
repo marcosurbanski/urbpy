@@ -13,7 +13,7 @@ def aula(request, slug):
     aula = facade.encontrar_aula(slug)
     modulo = aula.modulo
     aulas = facade.listar_aulas_de_modulo_ordenadas(modulo)
-    
+
     index = aulas.index(aula)
     aula_anterior = aulas[index - 1] if index > 0 else None
     aula_proxima = aulas[index + 1] if index < len(aulas) - 1 else None
