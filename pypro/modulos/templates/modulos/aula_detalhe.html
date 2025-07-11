@@ -11,17 +11,23 @@
 					<div style="position: relative; overflow: hidden; aspect-ratio: 1920/1080">
 						<iframe src="https://www.youtube.com/embed/{{ aula.video_id }}" loading="lazy" title="Random video from youtube" allowfullscreen allow="encrypted-media; fullscreen;" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; overflow:hidden;"></iframe>
 					</div>
-					<!-- Botão Voltar, só se o slug for "show" -->					
-					{% if aula.slug == "show" %}
-					<div>
-						<a class="btn btn-primary mt-2" href="{% url 'aperitivos:video' slug='motivacao' %}">Voltar</a>
+					<div class="d-flex justify-content-between mt-4">
+
+						{% if aula_anterior %}
+							<a class="btn btn-outline-primary" href="{% url 'modulos:aula' slug=aula_anterior.slug %}">
+							← Voltar para {{ aula_anterior.titulo }}
+							</a>
+						{% else %}
+							<div></div> {# mantém espaçamento se não houver botão #}
+						{% endif %}
+
+						{% if aula_proxima %}
+							<a class="btn btn-primary" href="{% url 'modulos:aula' slug=aula_proxima.slug %}">
+							Próximo: {{ aula_proxima.titulo }} →
+							</a>
+						{% endif %}
+
 					</div>
-					{% endif %}
-					{% if aula.slug == "motivacao" %}
-					<div>
-						<a name="show" class="btn btn-primary mt-4" href="{% url 'aperitivos:video' slug='show' %}"> Próximo vídeo</a>
-					</div>
-					{% endif %}
 				</div>
 			</div>				
 		</div>
