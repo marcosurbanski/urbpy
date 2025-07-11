@@ -24,3 +24,6 @@ def resp(client, aula):
 
 def test_titulos(resp, aula: Aula):
     assert_contains(resp, aula.titulo)
+
+def test_video_id(resp, aula: Aula):
+    assert_contains(resp, f'src="https://www.youtube.com/watch?v={{ aula.video_id }}"')
