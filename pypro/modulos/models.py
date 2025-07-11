@@ -23,7 +23,7 @@ class Modulo(OrderedModel):
 class Aula(OrderedModel):
     titulo = models.CharField(max_length=64)
     slug = models.SlugField(unique=True)
-    modulo = models.ForeignKey('Modulo', on_delete=models.PROTECT)    
+    modulo = models.ForeignKey('Modulo', on_delete=models.PROTECT)
     order_with_respect_to = 'modulo'
     video_id = models.CharField(max_length=64)
 
