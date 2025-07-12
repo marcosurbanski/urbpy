@@ -14,12 +14,12 @@
 					<!-- Botão Voltar, só se o slug for "show" -->					
 					{% if video.slug == "show" %}
 					<div>
-						<a class="btn btn-primary mt-2" href="{% url 'aperitivos:video' slug='motivacao' %}">Voltar</a>
+						<a href="{% url 'aperitivos:video' slug='motivacao' %}"><i class="bi bi-chevron-double-left"></i>Voltar</a>
 					</div>
 					{% endif %}
 					{% if video.slug == "motivacao" %}
 					<div>
-						<a name="show" class="btn btn-primary mt-4" href="{% url 'aperitivos:video' slug='show' %}"> Próximo vídeo</a>
+						<a name="show" href="{% url 'aperitivos:video' slug='show' %}"> Próximo vídeo <i class="bi bi-chevron-double-right"></i></a>
 					</div>
 					{% endif %}
 				</div>
