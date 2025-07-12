@@ -20,14 +20,14 @@
 
 						{% if aula_anterior %}
 							<a href="{% url 'modulos:aula' slug=aula_anterior.slug %}">
-								<i class="bi bi-chevron-double-left"></i>{{ aula_anterior.titulo }}
+								<i class="bi bi-caret-left-fill"></i>{{ aula_anterior.titulo }}
 							</a>						   
 						{% else %}
 							<div></div> {# mantém espaçamento se não houver botão #}
 						{% endif %}
 						{% if aula_proxima %}
 							<a href="{% url 'modulos:aula' slug=aula_proxima.slug %}">
-							{{ aula_proxima.titulo }} <i class="bi bi-chevron-double-right"></i>
+							{{ aula_proxima.titulo }}<i class="bi bi-caret-right-fill"></i>
 							</a>
 						{% endif %}
 
