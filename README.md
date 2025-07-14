@@ -1,4 +1,4 @@
-# 🚀 curso-django
+# 🚀 UrbPy
 
 Código desenvolvido durante o módulo de Django do [Python Pro](https://www.python.pro.br).  
 Esta aplicação está em constante evolução, explorando tecnologias modernas como Cloudflare R2, Highlight.io, e estratégias de produção otimizadas com Django 5.2.
