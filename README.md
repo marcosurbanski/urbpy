@@ -15,9 +15,9 @@ Codecov: Análise de cobertura de testes
 Dependabot: Atualização automática de dependências
 
 
-[![GitHub Actions](https://github.com/urbanstech/curso-django/actions/workflows/ci.yml/badge.svg)](https://github.com)
+[![GitHub Actions](https://github.com/marcosurbanski/urbpy/actions/workflows/ci.yml/badge.svg)](https://github.com)
 [![Dependabot enabled](https://img.shields.io/badge/dependabot-enabled-brightgreen?logo=dependabot)](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically)
-[![codecov](https://codecov.io/gh/urbanstech/curso-django/branch/main/graph/badge.svg)](https://codecov.io/gh/urbanstech/curso-django)
+[![codecov](https://codecov.io/gh/marcosurbanski/urbpy/branch/main/graph/badge.svg)](https://codecov.io/gh/marcosurbanski/urbpy)
 ![Python Version](https://img.shields.io/badge/python-3.10%2B-blue?logo=python)
 
 ---
@@ -41,7 +41,7 @@ Dependabot: Atualização automática de dependências
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/urbanstech/urbpy.git
+git clone https://github.com/marcosurbanski/urbpy.git
 cd urbpy
 
 # 2. Instale o ambiente com o pipenv
