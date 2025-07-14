@@ -41,8 +41,8 @@ Dependabot: Atualização automática de dependências
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/urbanstech/curso-django.git
-cd curso-django
+git clone https://github.com/urbanstech/urbpy.git
+cd urbpy
 
 # 2. Instale o ambiente com o pipenv
 pipenv install --dev
@@ -70,7 +70,7 @@ pipenv run pytest --cov=.
 📂 Estrutura de pastas
 
 ```text
-curso-django/
+urbpy/
 ├── pypro/              # Projeto Django
 │   ├── base/           # App principal
 │   └── settings.py
@@ -95,6 +95,3 @@ Aqui estão algumas importantes:
 | `CLOUDFLARE_R2_*`     | Configurações da Cloudflare R2             |
 | `COLLECTFAST_ENABLED` | Ativa o uso do Collectfast com boto3       |
 | `HIGHLIGHT_*`         | Configurações do Highlight.io              |
-
-
-
