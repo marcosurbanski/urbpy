@@ -156,10 +156,11 @@ USE_TZ = True
 
 # Configuração de ambiente de desenvolvimento
 
-COLLECTFAST_ENABLED = config("COLLECTFAST_ENABLED", default=False, cast=lambda v: str(v).lower() in ("true", "1", "t", "yes"))
+COLLECTFAST_ENABLED = config("COLLECTFAST_ENABLED", cast=bool, default=False)
 
 STATIC_URL = config("CLOUDFLARE_R2_PUBLIC_URL", default="https://pub-9c3ac0b38d92456c91bed81d8a666457.r2.dev") + "/static/"
 
+print(COLLECTFAST_ENABLED)
 if COLLECTFAST_ENABLED:
     STORAGES = {
         "default": {
