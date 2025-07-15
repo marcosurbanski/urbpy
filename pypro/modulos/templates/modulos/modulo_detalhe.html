@@ -3,6 +3,12 @@
 {% block title %}{{modulo.titulo}}{% endblock title %}
 <meta name="description" content="{% block description %} Página com Detalhes do módulo{{ modulo.titulo }}{% endblock description%}">
 {% block body %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'modulos:indice' %}">Módulos</a></li>			
+			<li class="breadcrumb-item active" aria-current="page">{{ modulo.titulo }}</li>
+		</ol>
+	</nav>
 	<main class="container">
 		<div class="container">
 			<div class="row">		
