@@ -1,6 +1,7 @@
 from django.urls import reverse
 import pytest
 
+
 @pytest.fixture
 def resp(client, db):
     return client.get(reverse('turmas:indice'))
