@@ -9,10 +9,10 @@ DATABASE_URL=postgres://postgres:postgres@localhost:5432/testdb  # URL do banco
 CLOUDFLARE_R2_ACCESS_KEY=access_key
 CLOUDFLARE_R2_SECRET_KEY=secret_key
 CLOUDFLARE_R2_BUCKET=curso-django
-CLOUDFLARE_R2_BUCKET_ENDPOINT=  # Endpoint do bucket
-CLOUDFLARE_R2_PUBLIC_URL=       # URL pública para servir arquivos estáticos
+CLOUDFLARE_R2_BUCKET_ENDPOINT=https://...   # Endpoint do bucket
+CLOUDFLARE_R2_PUBLIC_URL=https://...        # URL pública para servir arquivos estáticos
 
-COLLECTFAST_ENABLED=True  # True para ativar otimização de coleta de arquivos estáticos (produção)
+COLLECTFAST_ENABLED=False  # True para ativar otimização de coleta de arquivos estáticos (produção)
 
 INTERNAL_IPS=127.0.0.1     # Usado com debug_toolbar
 
