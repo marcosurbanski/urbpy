@@ -2,8 +2,8 @@ from django.urls import reverse
 import pytest
 
 @pytest.fixture
-def resp(client):
-    return client.get(reverse('turmas: indice'))
+def resp(client, db):
+    return client.get(reverse('turmas:indice'))
 
 
 def test_status_code(resp):
