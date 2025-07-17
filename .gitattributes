@@ -1,0 +1,10 @@
+# Ignorar arquivos de bibliotecas e terceiros nas estatísticas do GitHub Linguist
+
+# Bootstrap, jQuery, FontAwesome, etc.
+static/** linguist-vendored
+staticfiles/** linguist-vendored
+
+# Mapas de fontes, JS minificados, arquivos de distribuição
+*.min.js linguist-vendored
+*.map linguist-vendored
+*.bundle.js linguist-vendored
