@@ -6,11 +6,15 @@ from pypro.turmas.models import Turma
 
 class MatriculaInline(admin.TabularInline):
     model = Turma.alunos.through
+    extra = 1  # Número de linhas extras em branco para adicionar novas matrículas
+    readonly_fields = ('data',)
+    autocomplete_fields = ('usuario',)
+    ordering = ('-data',)
 
 
 @admin.register(Turma)
 class TurmaAdmin(admin.ModelAdmin):
-    inLines = [MatriculaInline]
+    inlines = [MatriculaInline]
     list_display = ('nome', 'slug', 'inicio', 'fim')
     prepopulated_fields = {'slug': ('nome',)}
     ordering = ('-inicio',)
