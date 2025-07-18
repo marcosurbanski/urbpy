@@ -6,6 +6,7 @@ staticfiles/** linguist-vendored
 
 # Mark Bootstrap and other static vendor files as vendored
 urbpy/pypro/base/static/** linguist-vendored
+pypro/base/static/** linguist-vendored
 
 # Mapas de fontes, JS minificados, arquivos de distribuição
 *.min.js linguist-vendored
