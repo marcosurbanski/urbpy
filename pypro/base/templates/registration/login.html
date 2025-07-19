@@ -7,9 +7,9 @@
 			<div class="row">		
 				<div class="col">	
 					{% if form.errors %}
-					<p style="color: red; font-weight: bold;">
-					Usuário ou senha incorretos. Tente novamente.
-					</p>
+					<div class="alert alert-danger" role="alert">
+					Usuário ou senha incorretos. Por favor, tente novamente.
+					</div>
 					{% endif %}
 
 					{% if next %}
