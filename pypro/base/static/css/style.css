@@ -7,7 +7,7 @@
 
 .rights {
   background-color: rgb(86, 86, 86);  
-  color: rgb(246, 171, 50);
+  color: #FFB300;
   padding: 1rem 0;
   width: 100%;
 }
@@ -25,4 +25,13 @@ main {
 
 .card-gray-light {
   background-color: #d0d3d5;
+}
+
+.img-ajustada {
+  height: 150px;
+  object-fit: cover;
+}
+
+.thumbnail-border-color {
+  border-color: #09cb4a !important; /* azul, por exemplo */
 }
