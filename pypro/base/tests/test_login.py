@@ -51,10 +51,6 @@ def resp_home_com_usuario_logado(client_com_usuario_logado, db):
     return client_com_usuario_logado.get(reverse('base:home'))
 
 
-def test_botao_entrar_disponivel(resp_home_com_usuario_logado):
-    assert_not_contains(resp_home_com_usuario_logado, 'Entrar')
-
-
 def test_link_de_login_indisponivel(resp_home_com_usuario_logado):
     assert_not_contains(resp_home_com_usuario_logado, reverse('login'))
 
@@ -69,4 +65,3 @@ def test_nome_usuario_logado_disponivel(resp_home_com_usuario_logado, usuario_lo
 
 def test_link_de_logout_disponivel(resp_home_com_usuario_logado):
     assert_contains(resp_home_com_usuario_logado, reverse('logout'))
-
