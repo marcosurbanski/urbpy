@@ -54,8 +54,10 @@
 					<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{ user.first_name }}
 					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">						
-						<button type="button" class="dropdown-item"> Sair</button>						
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<div class="dropdown-item">
+							<a class="btn btn-danger" href="{% url 'logout' %}">Sair</a>
+						</div>					
 					</div>
 				</li>
 			</ul>
