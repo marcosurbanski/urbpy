@@ -5,7 +5,7 @@ from pypro.django_assertions import assert_contains
 
 @pytest.fixture
 def usuario_logado(db, django_user_model):
-    usuario_modelo = baker.make(django_user_model)    
+    usuario_modelo = baker.make(django_user_model, first_name='Fulano')    
     return usuario_modelo
 
 @pytest.fixture
