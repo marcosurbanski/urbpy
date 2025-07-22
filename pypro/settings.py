@@ -59,6 +59,12 @@ SESSION_COOKIE_SECURE = not DEBUG
 # Application definition
 
 INSTALLED_APPS = [
+    'pypro.base',
+    'pypro.aperitivos',
+    'pypro.modulos',
+    'pypro.turmas',
+    'storages',
+    'pypro',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,14 +72,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'collectfast',
     'django.contrib.staticfiles',
-    'pypro.base',
-    'pypro.aperitivos',
-    'pypro.modulos',
-    'pypro.turmas',
-    'storages',
-    'pypro',
     'ordered_model',
     'django_extensions',
+
 ]
 
 MIDDLEWARE = [
