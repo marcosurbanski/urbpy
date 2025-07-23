@@ -1,6 +1,6 @@
 from django.urls import path
 from pypro.base.views import home
-from .views import home, CustomLoginView
+from .views import CustomLoginView
 
 app_name = 'base'
 urlpatterns = [
