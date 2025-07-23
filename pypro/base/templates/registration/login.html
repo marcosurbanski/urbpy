@@ -34,7 +34,12 @@
 					</table>
 					<input type="submit" value="login">
 					<input type="hidden" name="next" value="{{ next }}">
+					<!-- Widget Turnstile -->
+					<div class="cf-turnstile" data-sitekey="0x4AAAAAABmOHLhpp2TS6aRh" data-theme="light"></div>
+					<!-- Script Turnstile -->
 				</form>
+
+				<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 				{# Assumes you set up the password_reset view in your URLconf #}
 				<p><a href="{% url 'password_reset' %}">Esqueceu sua senha?</a></p>
 			</div>
