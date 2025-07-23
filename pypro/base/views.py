@@ -10,7 +10,6 @@ def home(request):
     return render(request, 'base/home.html')
 
 
-
 class CustomLoginView(LoginView):
     template_name = "registration/login.html"  # seu template
 
