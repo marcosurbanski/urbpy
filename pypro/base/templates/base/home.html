@@ -2,79 +2,89 @@
 {% load static %}
 {% block title %}UrbPy - Home{% endblock title %}
 {% block body %}
-	<main class="container">
-		<div class="container">
-			<div class="row">		
-				<div class="col-md-12">
-					<div class="card card-gray-light  mb-4">
-						<div class="container-fluid py-5">
-							<h4 class="display-6 fw-bold align-items-center">Plataforma - URBPY 🖥️ </h4>
-						
-							<h4 class="mt-5"> Entre na fila de espera</h4>
-							<form action="https://gmail.us15.list-manage.com/subscribe/post?u=298924e948797aa911794ac34&amp;id=9e35377035&amp;f_id=007aa3e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="d-flex align-items-center gap-2 flex-wrap w-100 mt-3" target="_blank">
-								<div>
-									<label class="visually-hidden" for="mce-EMAIL">Email</label>
-									<input type="email" name="EMAIL" class="form-control" id="mce-EMAIL" placeholder="exemplo@email.com" required>
-								</div>
-								<div>
-									<label class="visually-hidden" for="mce-FNAME">Nome</label>
-									<input type="text" name="FNAME" class="form-control" id="mce-FNAME" placeholder="Seu nome">
-								</div>
-								<div style="position: absolute; left: -5000px;" aria-hidden="true">
-									<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
-									<input type="text" name="b_298924e948797aa911794ac34_9e35377035" tabindex="-1" value="">
-								</div>
-								<div>
-									<input type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary" value="Subscribe">
-								</div>
-							</form>						
-							
-							<h5 class="mt-5"> <i>Em desenvolvimento! </i><i class="bi bi-person-workspace text-success"></i><i class="bi bi-lightning-charge-fill text-warning"></i></h5>
-							<!-- INICIO DO BOTAO PAGBANK 
+<main class="container">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card card-gray-light  mb-4">
+					<div class="container-fluid py-5">
+						<h4 class="display-6 fw-bold align-items-center">Plataforma - URBPY 🖥️ </h4>
+						<h4 class="mt-5"> Entre na fila de espera</h4>
+						<form
+							action="https://gmail.us15.list-manage.com/subscribe/post?u=298924e948797aa911794ac34&amp;id=9e35377035&amp;f_id=007aa3e1f0"
+							method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+							class="d-flex align-items-center gap-2 flex-wrap w-100 mt-3" target="_blank">
+							<div>
+								<label class="visually-hidden" for="mce-EMAIL">Email</label>
+								<input type="email" name="EMAIL" class="form-control" id="mce-EMAIL"
+									placeholder="exemplo@email.com" required>
+							</div>
+							<div>
+								<label class="visually-hidden" for="mce-FNAME">Nome</label>
+								<input type="text" name="FNAME" class="form-control" id="mce-FNAME"
+									placeholder="Seu nome">
+							</div>
+							<div style="position: absolute; left: -5000px;" aria-hidden="true">
+								<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
+								<input type="text" name="b_298924e948797aa911794ac34_9e35377035" tabindex="-1" value="">
+							</div>
+							<div>
+								<input type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary"
+									value="Subscribe">
+							</div>
+						</form>
+						<h5 class="mt-5"> <i>Em desenvolvimento! </i><i
+								class="bi bi-person-workspace text-success"></i><i
+								class="bi bi-lightning-charge-fill text-warning"></i></h5>
+						<!-- INICIO DO BOTAO PAGBANK 
 							<a href="https://pag.ae/7_M8kmyHP/button" target="_blank" title="Pagar com PagBank">
 								<img src="//assets.pagseguro.com.br/ps-integration-assets/botoes/pagamentos/205x30-pagar.gif" alt="Pague com PagBank - é rápido, grátis e seguro!" />
 							</a>
-							FIM DO BOTAO PAGBANK -->	
-
-						</div>
-					</div>
-				</div>
-			</div>	
-		
-			<div class="row">
-				<div class="col-md-12">
-					<div class="card">
-						<h5 class="card-header card-gray-light">
-							Mais detalhes sobre a plataforma em breve!
-						</h5>
-						<div class="card-body">
-							<p class="card-text">
-								<img src="{% static 'img/logo.png' %}" alt="Foto da logo da Pagina" class="img-thumbnail float-start me-3 w-25"/>
-								🖥️ URBPY — Plataforma de TI para Gravação e Publicação de Cursos, será uma plataforma de tecnologia educacional voltada para a criação, gravação, organização e distribuição de cursos, 
-								com foco em conteúdos técnicos e profissionais, especialmente na área de TI.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 mt-3">
-					<div class="card">
-						<h5 class="card-header card-gray-light">
-							Aperitivos 📚
-						</h5>
-						<div class="card-body">
-							<p class="card-text">
-								<a href="{% url 'modulos:indice' %}">
-									<img src="{% static 'img/py-django-logo-new.png' %}" alt="Imagem da pagina de Módulos" class="img-fluid float-start me-3 img-thumbnail w-25 thumbnail-border-color"/>
-								</a>
-								<h5>Introdução ao Python e Django.</h5>								
-								Aprenda os fundamentos do Python, com opções para usar direto no navegador sem instalação, e conheça os passos simples para começar a programar com Django.<a href="{% url 'modulos:indice' %}"> <i text-primary>Clique na imagem ao lado!</i> </a>
-							</p>
-						</div>
+							FIM DO BOTAO PAGBANK -->
 					</div>
 				</div>
 			</div>
 		</div>
-	</main>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<h5 class="card-header card-gray-light">
+						Mais detalhes sobre a plataforma em breve!
+					</h5>
+					<div class="card-body">
+						<p class="card-text">
+							<img src="{% static 'img/logo.png' %}" alt="Foto da logo da Pagina"
+								class="img-thumbnail float-start me-3 w-25" />
+							🖥️ URBPY — Plataforma de TI para Gravação e Publicação de Cursos, será uma plataforma de
+							tecnologia educacional voltada para a criação, gravação, organização e distribuição de
+							cursos,
+							com foco em conteúdos técnicos e profissionais, especialmente na área de TI.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 mt-3">
+				<div class="card">
+					<h5 class="card-header card-gray-light">
+						Aperitivos 📚
+					</h5>
+					<div class="card-body">
+						<p class="card-text">
+							<a href="{% url 'modulos:indice' %}">
+								<img src="{% static 'img/py-django-logo-new.png' %}" alt="Imagem da pagina de Módulos"
+									class="img-fluid float-start me-3 img-thumbnail w-25 thumbnail-border-color" />
+							</a>
+						<h5>Introdução ao Python e Django.</h5>
+						Aprenda os fundamentos do Python, com opções para usar direto no navegador sem instalação, e
+						conheça os passos simples para começar a programar com Django.<a
+							href="{% url 'modulos:indice' %}"> <i text-primary>Clique na imagem ao lado!</i> </a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
 {% endblock body %}
