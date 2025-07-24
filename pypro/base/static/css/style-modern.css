@@ -1,0 +1,152 @@
+/* Modernized styles for UrbPy platform */
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #bbbbbb;
+  color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+  padding: 2rem 1rem;
+  background-color: #1a1a1a;
+  color: #f8f9fa;
+}
+
+.navbar {
+  padding: 1rem 1.5rem;
+  background-color: #fff; /* Keep navbar background white */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Keep shadow */
+}
+
+.navbar-brand .brand-text {
+  color: #0d6efd;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+  color: #495057;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #0d6efd;
+}
+
+.navbar-nav .dropdown-menu {
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.15);
+}
+
+.navbar-nav .dropdown-item {
+  font-weight: 500;
+  color: #212529;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-nav .dropdown-item:hover,
+.navbar-nav .dropdown-item:focus {
+  background-color: #e7f1ff;
+  color: #0d6efd;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  font-weight: 600;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+.footer {
+  background-color: #656d75;
+  color: #f8f9fa;
+  padding: 3rem 1rem;
+  flex-shrink: 0;
+}
+
+.footer a {
+  color: #e9ecef;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover,
+.footer a:focus {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+.footer .social-links a {
+  font-size: 1.25rem;
+  margin-right: 1rem;
+  color: #e9ecef;
+  transition: color 0.3s ease;
+}
+
+.footer .social-links a:hover,
+.footer .social-links a:focus {
+  color: #0d6efd;
+}
+
+.input-group .form-control {
+  border-radius: 0.375rem 0 0 0.375rem;
+}
+
+.input-group .btn {
+  border-radius: 0 0.375rem 0.375rem 0;
+}
+
+.card-gray-light {
+  background-color: #2c2c2c;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+}
+
+.img-ajustada {
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.thumbnail-border-color {
+  border-color: #0d6efd !important;
+}
+
+.btn-floating {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.btn-floating:hover,
+.btn-floating:focus {
+  background-color: #0b5ed7;
+  color: #fff;
+  text-decoration: none;
+}
+.footer .text-muted {
+  color: #ced4da !important; /* ou outro tom claro */
+}
