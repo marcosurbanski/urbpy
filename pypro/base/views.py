@@ -19,7 +19,7 @@ class CustomLoginView(LoginView):
             return HttpResponseForbidden("Captcha não preenchido.")
 
         data = {
-            "secret": settings.CLOUDFLARE_TURNSTILE_SECRET,
+            "secret": settings.TURNSTILE_SECRET_KEY,
             "response": token,
             "remoteip": self.request.META.get("REMOTE_ADDR"),
         }

@@ -5,62 +5,213 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{% block title %}UrbPy{% endblock title%}</title>
-	<meta name="description" content="{% block description %} Página da aplicação URBPY{% endblock description%}">
+	<title>{% block title %}UrbPy - Plataforma de Cursos{% endblock title%}</title>
+	<meta name="description" content="{% block description %}UrbPy - Plataforma moderna de cursos online com foco em tecnologia e programação{% endblock description%}">
 	<meta name="author" content="Marcos Urbanski">
 	<link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}" />
+	
+	<!-- Bootstrap CSS -->
 	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<!-- Bootstrap Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	
+	<!-- Scripts -->
 	<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-	<script src="{% static 'js/scripts.js' %}"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container-fluid">
-			<a class="navbar-brand mb-0 h3" href="{% url 'base:home' %}">UrbPy</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+	<!-- Modern Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+		<div class="container">
+			<a class="navbar-brand d-flex align-items-center" href="{% url 'base:home' %}">
+				<div class="brand-logo me-2">
+					<i class="bi bi-mortarboard-fill text-primary fs-3"></i>
+				</div>
+				<span class="brand-text fw-bold fs-4">UrbPy</span>
+			</a>
+			
+			<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav me-auto">
 					<li class="nav-item">
-						<a class="nav-link active text-light" href="{% url 'aperitivos:indice' %}">
-							Motivação
+						<a class="nav-link fw-medium" href="{% url 'base:home' %}">
+							<i class="bi bi-house me-1"></i>Início
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link fw-medium" href="{% url 'aperitivos:indice' %}">
+							<i class="bi bi-play-circle me-1"></i>Motivação
 						</a>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle text-light" href="{% url 'modulos:indice' %}" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false">
-							Módulos
+						<a class="nav-link dropdown-toggle fw-medium" href="{% url 'modulos:indice' %}" 
+						   id="modulosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-collection me-1"></i>Cursos
 						</a>
-						<ul class="dropdown-menu dropdown-menu-dark">
+						<ul class="dropdown-menu shadow border-0" aria-labelledby="modulosDropdown">
 							{% for modulo in MODULOS %}
-							<li><a class="dropdown-item" href="{{modulo.get_absolute_url}}">{{modulo.titulo}}</a></li>
+							<li>
+								<a class="dropdown-item py-2" href="{{modulo.get_absolute_url}}">
+									<i class="bi bi-book me-2 text-primary"></i>{{modulo.titulo}}
+								</a>
+							</li>
 							{% endfor %}
 						</ul>
 					</li>
 				</ul>
-				{% if user.is_authenticated %}
-				<ul class="navbar-nav">
-					<li class="nav-item d-flex align-items-center">
-						<span class="nav-link text-light me-2">{{ user.first_name }}</span>
-						<form method="post" action="{% url 'logout' %}">
-							{% csrf_token %}
-							<button type="submit" class="btn btn-sm btn-outline-danger">Sair</button>
-						</form>
-					</li>
-				</ul>
-				{% else %}
-				<a class="btn btn-light my-2" href="{% url 'login' %}">Entrar</a>
-				{% endif %}
+				
+				<!-- User Authentication -->
+				<div class="navbar-nav">
+					{% if user.is_authenticated %}
+					<div class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle d-flex align-items-center" href="#" 
+						   id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<div class="user-avatar me-2">
+								<i class="bi bi-person-circle fs-5 text-primary"></i>
+							</div>
+							<span class="fw-medium">{{ user.first_name|default:"Usuário" }}</span>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="userDropdown">
+							<li>
+								<a class="dropdown-item py-2" href="#">
+									<i class="bi bi-person me-2"></i>Meu Perfil
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item py-2" href="#">
+									<i class="bi bi-bookmark me-2"></i>Meus Cursos
+								</a>
+							</li>
+							<li><hr class="dropdown-divider"></li>
+							<li>
+								<form method="post" action="{% url 'logout' %}" class="d-inline">
+									{% csrf_token %}
+									<button type="submit" class="dropdown-item py-2 text-danger">
+										<i class="bi bi-box-arrow-right me-2"></i>Sair
+									</button>
+								</form>
+							</li>
+						</ul>
+					</div>
+					{% else %}
+					<a class="btn btn-outline-primary me-2" href="{% url 'login' %}">
+						<i class="bi bi-box-arrow-in-right me-1"></i>Entrar
+					</a>
+					<a class="btn btn-primary" href="{% url 'login' %}">
+						<i class="bi bi-person-plus me-1"></i>Cadastrar
+					</a>
+					{% endif %}
+				</div>
 			</div>
 		</div>
 	</nav>
-	{% block body %}{% endblock body %}
-	{% include 'base/footer.html' with contato_email='urbpy@urbpy.com.br' only%}
+
+	<!-- Main Content -->
+	<main class="main-content">
+		{% block body %}{% endblock body %}
+	</main>
+
+	<!-- Modern Footer -->
+	<footer class="footer bg-dark text-light mt-5">
+		<div class="container py-5">
+			<div class="row">
+				<div class="col-lg-4 mb-4">
+					<div class="d-flex align-items-center mb-3">
+						<i class="bi bi-mortarboard-fill text-primary fs-3 me-2"></i>
+						<span class="fs-4 fw-bold">UrbPy</span>
+					</div>
+					<p class="text-muted">
+						Plataforma moderna de cursos online com foco em tecnologia e programação. 
+						Aprenda no seu ritmo com conteúdo de qualidade.
+					</p>
+					<div class="social-links">
+						<a href="#" class="text-light me-3"><i class="bi bi-facebook fs-5"></i></a>
+						<a href="#" class="text-light me-3"><i class="bi bi-twitter fs-5"></i></a>
+						<a href="#" class="text-light me-3"><i class="bi bi-linkedin fs-5"></i></a>
+						<a href="#" class="text-light"><i class="bi bi-github fs-5"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-6 mb-4">
+					<h6 class="fw-bold mb-3">Cursos</h6>
+					<ul class="list-unstyled">
+						<li><a href="{% url 'modulos:indice' %}" class="text-muted text-decoration-none">Python</a></li>
+						<li><a href="{% url 'modulos:indice' %}" class="text-muted text-decoration-none">Django</a></li>
+						<li><a href="{% url 'aperitivos:indice' %}" class="text-muted text-decoration-none">Motivação</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-6 mb-4">
+					<h6 class="fw-bold mb-3">Suporte</h6>
+					<ul class="list-unstyled">
+						<li><a href="#" class="text-muted text-decoration-none">Central de Ajuda</a></li>
+						<li><a href="#" class="text-muted text-decoration-none">Contato</a></li>
+						<li><a href="#" class="text-muted text-decoration-none">FAQ</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-4 mb-4">
+					<h6 class="fw-bold mb-3">Newsletter</h6>
+					<p class="text-muted">Receba as últimas novidades e atualizações dos cursos.</p>
+					<div class="input-group">
+						<input type="email" class="form-control" placeholder="Seu e-mail">
+						<button class="btn btn-primary" type="button">
+							<i class="bi bi-send"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<hr class="my-4">
+			<div class="row align-items-center">
+				<div class="col-md-6">
+					<p class="text-muted mb-0">
+						&copy; 2025 UrbPy. Todos os direitos reservados.
+					</p>
+				</div>
+				<div class="col-md-6 text-md-end">
+					<a href="#" class="text-muted text-decoration-none me-3">Termos de Uso</a>
+					<a href="#" class="text-muted text-decoration-none">Política de Privacidade</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Back to Top Button -->
+	<button class="btn btn-primary btn-floating" id="backToTop" style="display: none;">
+		<i class="bi bi-arrow-up"></i>
+	</button>
+
+	<!-- Custom JavaScript -->
+	<script>
+		// Back to top functionality
+		window.addEventListener('scroll', function() {
+			const backToTop = document.getElementById('backToTop');
+			if (window.pageYOffset > 300) {
+				backToTop.style.display = 'block';
+			} else {
+				backToTop.style.display = 'none';
+			}
+		});
+
+		document.getElementById('backToTop').addEventListener('click', function() {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+
+		// Smooth scrolling for anchor links
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+				const target = document.querySelector(this.getAttribute('href'));
+				if (target) {
+					target.scrollIntoView({ behavior: 'smooth' });
+				}
+			});
+		});
+	</script>
 </body>
 </html>

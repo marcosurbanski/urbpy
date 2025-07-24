@@ -82,7 +82,7 @@ class UserManager(BaseUserManager):
         self, perm, is_active=True, include_superusers=True, backend=None, obj=None
     ):
         if backend is None:
-            backends = backends = get_backends()
+            backends = get_backends()
             if len(backends) == 1:
                 backend, _ = backends[0]
             else:
